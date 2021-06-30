@@ -4,6 +4,7 @@
 
 - npm install axios
 - yarn add axios
+- yarn add react-router-dom
 
 # movie api data
 
