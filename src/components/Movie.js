@@ -2,6 +2,37 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+// id, title, summary, medium_cover_image, year
+const Movie = ({ movie }) => {
+  //console.log(movie);
+  return (
+    <>
+      <Link
+        to={{
+          pathname: `/movie/${movie.id}`,
+          state: { movie },
+        }}
+      >
+        <MovieBox>
+          <ImageBox src={movie.medium_cover_image} />
+          <div>
+            <TitleBox>{movie.title}</TitleBox>
+            <YearBox>{movie.year}</YearBox>
+            <GenresBox>
+              {movie.genres.map((g, i) => (
+                <LiBox key={i}>{g}</LiBox>
+              ))}
+            </GenresBox>
+            <div>{movie.summary.slice(0, 180)}...</div>
+          </div>
+        </MovieBox>
+      </Link>
+    </>
+  );
+};
+
+export default Movie;
+
 const MovieBox = styled.div`
   background-color: white;
   margin-bottom: 70px;
@@ -49,34 +80,3 @@ const LiBox = styled.li`
   margin-right: 10px;
   font-size: 14px;
 `;
-
-// id, title, summary, medium_cover_image, year
-const Movie = ({ movie }) => {
-  console.log(movie);
-  return (
-    <>
-      <Link
-        to={{
-          pathname: `/movie/${movie.id}`,
-          state: { movie },
-        }}
-      >
-        <MovieBox>
-          <ImageBox src={movie.medium_cover_image} />
-          <div>
-            <TitleBox>{movie.title}</TitleBox>
-            <YearBox>{movie.year}</YearBox>
-            <GenresBox>
-              {movie.genres.map((g, i) => (
-                <LiBox key={i}>{g}</LiBox>
-              ))}
-            </GenresBox>
-            <div>{movie.summary.slice(0, 180)}...</div>
-          </div>
-        </MovieBox>
-      </Link>
-    </>
-  );
-};
-
-export default Movie;
