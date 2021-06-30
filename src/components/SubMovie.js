@@ -1,6 +1,28 @@
 import React from "react";
 import styled from "styled-components";
 
+const SubMovie = ({ movie }) => {
+  return (
+    <StyledDiv>
+      <StyledA href="">
+        <StyledImg alt="a" src={movie.medium_cover_image} />
+        <StyledDivData>
+          <StyledDivTitle>{movie.title}</StyledDivTitle>
+          <StyledDivYear>{movie.year}</StyledDivYear>
+          <StyledDivGenres>
+            {movie.genres.map((genre) => (
+              <StyledLi>{genre}</StyledLi>
+            ))}
+          </StyledDivGenres>
+          <p>{movie.summary.slice(0, 180)}...</p>
+        </StyledDivData>
+      </StyledA>
+    </StyledDiv>
+  );
+};
+
+export default SubMovie;
+
 const StyledDiv = styled.div`
   background-color: white;
   margin-bottom: 70px;
@@ -58,23 +80,3 @@ const StyledLi = styled.li`
   margin-right: 10px;
   font-size: 14px;
 `;
-
-const SubMovie = ({ movie }) => {
-  return (
-    <StyledDiv>
-      <StyledA href="">
-        <StyledImg alt="a" src={movie.medium_cover_image} />
-        <StyledDivData>
-          <StyledDivTitle>{movie.title}</StyledDivTitle>
-          <StyledDivYear>{movie.year}</StyledDivYear>
-          <StyledDivGenres>
-            <StyledLi>{movie.genres}</StyledLi>
-          </StyledDivGenres>
-          <p>{movie.summary}</p>
-        </StyledDivData>
-      </StyledA>
-    </StyledDiv>
-  );
-};
-
-export default SubMovie;
